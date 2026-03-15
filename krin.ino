@@ -7,7 +7,7 @@ extern "C" {
 }
 
 // Configuration
-const char* ssid = "Wifi_name";
+const char* ssid     = "Wifi_name";
 const char* password = "Wifi_passwd";
 const char* serverUrl = "Server_URL";
 uint8_t newMac[] = {0x38, 0x18, 0x2B, 0xB2, 0xAE, 0x5C};
@@ -18,7 +18,7 @@ unsigned long timerDelay = 5000; // Send data every 5 seconds
 void setup() {
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
-
+  
   // Apply Spoofing
   if (wifi_set_macaddr(STATION_IF, newMac)) {
     Serial.println("[Success] MAC Spoofed.");
@@ -40,8 +40,8 @@ void loop() {
       HTTPClient http;
 
       // Generate random 3-bit data (0 to 7)
-      int randomData = random(0, 8);
-
+      int randomData = random(0, 8); 
+      
       Serial.printf("[HTTP] Sending data: %d\n", randomData);
 
       // Start connection
@@ -59,7 +59,7 @@ void loop() {
         Serial.print("Error code: ");
         Serial.println(httpResponseCode);
       }
-
+      
       http.end();
     }
     lastTime = millis();
